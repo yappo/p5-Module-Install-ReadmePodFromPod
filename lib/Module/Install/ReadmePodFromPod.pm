@@ -14,9 +14,7 @@ sub readme_pod_from {
   return 1;
 }
 
-'let Perldoc render Pod as ... Pod!';
-
-1;
+'let README.pod render Pod as ... Pod!';
 __END__
 
 =for stopwords
