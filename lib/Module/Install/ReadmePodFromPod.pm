@@ -65,7 +65,7 @@ Kazuhiro Osawa E<lt>yappo <at> shibuya <döt> plE<gt>
 
 =head1 SEE ALSO
 
-L<Module::Install>, L<Module::Install::ReadmeFromPod>
+L<Module::Install>, L<Module::Install::ReadmeFromPod>, L<Pod::Perldoc::ToPod>
 
 =head1 LICENSE
 
