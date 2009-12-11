@@ -8,6 +8,7 @@ readme_pod_from 'lib/Module/Install/ReadmePodFromPod.pm';
 
 perl_version   '5.006';
 requires       'Module::Install' => 0.85;
+requires       'Pod::Perldoc';
 build_requires 'Test::More'      => 0.47;
 build_requires 'Capture::Tiny'   => 0.05;
 

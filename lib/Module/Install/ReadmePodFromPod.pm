@@ -10,7 +10,11 @@ sub readme_pod_from {
   my $self = shift;
   return unless $Module::Install::AUTHOR;
   my $file = shift || return;
-  `perldoc -opod $file > README.pod`;
+
+  require Pod::Perldoc::ToPod;
+  open my $out, '>', 'README.pod' or die "can not create README.pod file: $!";
+  my $parser = Pod::Perldoc::ToPod->new;
+  $parser->parse_from_file($file, $out);
   return 1;
 }
 
