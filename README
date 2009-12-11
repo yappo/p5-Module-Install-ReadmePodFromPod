@@ -25,7 +25,7 @@ COMMANDS
 
     "readme_pod_from"
         Does nothing on the user-side. On the author-side it will generate a
-        "README.pod" file using perldoc fromthe POD in the file passed as a
+        "README.pod" file using perldoc from the POD in the file passed as a
         parameter.
 
           readme_pod_from 'lib/Some/Module.pm';

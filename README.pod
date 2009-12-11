@@ -30,7 +30,7 @@ This plugin adds the following Module::Install command:
 
 =item C<readme_pod_from>
 
-Does nothing on the user-side. On the author-side it will generate a C<README.pod> file using L<perldoc> fromthe POD in the file passed as a parameter.
+Does nothing on the user-side. On the author-side it will generate a C<README.pod> file using L<perldoc> from the POD in the file passed as a parameter.
 
   readme_pod_from 'lib/Some/Module.pm';
 
