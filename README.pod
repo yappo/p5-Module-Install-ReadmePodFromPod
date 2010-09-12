@@ -11,7 +11,8 @@ Module::Install::ReadmePodFromPod - A Module::Install extension to automatically
   use Module::Install::ReadmePodFromPod;
   readme_pod_from 'lib/Some/Module.pm';
 
-A C<README.pod> file will be generated from the POD of the indicated module file.
+A C<README.pod> file will be generated from the POD of the indicated module file.  If there is no file
+specified, try to use the file from 'all_from', if there is one, otherwise die.
 
 =head1 DESCRIPTION
 
@@ -34,6 +35,11 @@ Does nothing on the user-side. On the author-side it will generate a C<README.po
 
   readme_pod_from 'lib/Some/Module.pm';
 
+If you don't specify a file, we look for the file specified in the 'all_from' command (if one exists)
+
+  all_from 'lib/Some/Module.pm';
+  readme_pod_from; ## builds README.pod from Some::Module
+
 =back
 
 =head1 AUTHOR
@@ -42,7 +48,7 @@ Kazuhiro Osawa E<lt>yappo <at> shibuya <döt> plE<gt>
 
 =head1 SEE ALSO
 
-L<Module::Install>, L<Module::Install::ReadmeFromPod>
+L<Module::Install>, L<Module::Install::ReadmeFromPod>, L<Pod::Perldoc::ToPod>
 
 =head1 LICENSE
 

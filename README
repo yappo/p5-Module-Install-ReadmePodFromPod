@@ -8,7 +8,8 @@ SYNOPSIS
       readme_pod_from 'lib/Some/Module.pm';
 
     A "README.pod" file will be generated from the POD of the indicated
-    module file.
+    module file. If there is no file specified, try to use the file from
+    'all_from', if there is one, otherwise die.
 
 DESCRIPTION
     Module::Install::ReadmePodFromPod is a Module::Install extension that
@@ -30,11 +31,17 @@ COMMANDS
 
           readme_pod_from 'lib/Some/Module.pm';
 
+        If you don't specify a file, we look for the file specified in the
+        'all_from' command (if one exists)
+
+          all_from 'lib/Some/Module.pm';
+          readme_pod_from; ## builds README.pod from Some::Module
+
 AUTHOR
     Kazuhiro Osawa <yappo <at> shibuya <döt> pl>
 
 SEE ALSO
-    Module::Install, Module::Install::ReadmeFromPod
+    Module::Install, Module::Install::ReadmeFromPod, Pod::Perldoc::ToPod
 
 LICENSE
     This library is free software; you can redistribute it and/or modify it

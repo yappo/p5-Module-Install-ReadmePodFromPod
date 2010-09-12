@@ -4,6 +4,7 @@ use warnings;
 use base qw(Module::Install::Base);
 use vars qw($VERSION);
 
+use 5.008;
 $VERSION = '0.02';
 
 sub readme_pod_from {
@@ -11,7 +12,7 @@ sub readme_pod_from {
   return unless $Module::Install::AUTHOR;
 
   my $file = shift || $self->_all_from
-    or die "Can't determine file to make readme_pod_from";
+    || die "Can't determine file to make readme_pod_from";
 
   require Pod::Perldoc::ToPod;
   open my $out, '>', 'README.pod' or die "can not create README.pod file: $!";
