@@ -1,4 +1,8 @@
 Revision history for Perl extension Module::Install::ReadmePodFromPod
 
+0.02    Sun Sep 12 19:17:00 2010
+	- Stole code from recent Module::Install::ReadmeFromPod so that
+          we use the file specified in "all_from" if we have that.
+
 0.01    Fri Dec 11 19:45:15 2009
         - original version
