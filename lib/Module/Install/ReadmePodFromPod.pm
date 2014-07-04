@@ -4,18 +4,31 @@ use warnings;
 use base qw(Module::Install::Base);
 use vars qw($VERSION);
 
-$VERSION = '0.01';
+use 5.008;
+$VERSION = '0.02';
 
 sub readme_pod_from {
   my $self = shift;
   return unless $Module::Install::AUTHOR;
-  my $file = shift || return;
+
+  my $file = shift || $self->_all_from
+    || die "Can't determine file to make readme_pod_from";
 
   require Pod::Perldoc::ToPod;
   open my $out, '>', 'README.pod' or die "can not create README.pod file: $!";
   my $parser = Pod::Perldoc::ToPod->new;
   $parser->parse_from_file($file, $out);
   return 1;
+}
+
+sub _all_from {
+  my $self = shift;
+  return unless $self->admin->{extensions};
+  my ($metadata) = grep {
+    ref($_) eq 'Module::Install::Metadata';
+  } @{$self->admin->{extensions}};
+  return unless $metadata;
+  return $metadata->{values}{all_from} || '';
 }
 
 'let README.pod render Pod as ... Pod!';
@@ -34,7 +47,8 @@ Module::Install::ReadmePodFromPod - A Module::Install extension to automatically
   use Module::Install::ReadmePodFromPod;
   readme_pod_from 'lib/Some/Module.pm';
 
-A C<README.pod> file will be generated from the POD of the indicated module file.
+A C<README.pod> file will be generated from the POD of the indicated module file.  If there is no file
+specified, try to use the file from 'all_from', if there is one, otherwise die.
 
 =head1 DESCRIPTION
 
@@ -56,6 +70,11 @@ This plugin adds the following Module::Install command:
 Does nothing on the user-side. On the author-side it will generate a C<README.pod> file using L<perldoc> from the POD in the file passed as a parameter.
 
   readme_pod_from 'lib/Some/Module.pm';
+
+If you don't specify a file, we look for the file specified in the 'all_from' command (if one exists)
+
+  all_from 'lib/Some/Module.pm';
+  readme_pod_from; ## builds README.pod from Some::Module
 
 =back
 
